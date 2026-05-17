@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solubility Rules — Grade 11 Chemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --surface3: #30363d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --warn: #d29922;
+    --danger: #f85149;
+    --purple: #bc8cff;
+    --teal: #39d353;
+    --soluble: #3fb950;
+    --insoluble: #f85149;
+    --partial: #d29922;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  .nav-progress {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--surface3);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .nav-dot.active { background: var(--accent); transform: scale(1.3); }
+  .nav-dot.done { background: var(--accent2); }
+
+  .progress-bar {
+    position: fixed;
+    top: 60px; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--purple));
+    transition: width 0.4s ease;
+    z-index: 99;
+  }
+
+  /* SECTIONS */
+  section {
+    min-height: 100vh;
+    padding: 100px 2rem 60px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: none;
+    animation: fadeSlide 0.5s ease;
+  }
+
+  section.active { display: block; }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TYPOGRAPHY */
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  p { margin-bottom: 1rem; color: var(--muted); }
+  p strong { color: var(--text); font-weight: 500; }
+
+  .lead { font-size: 1.1rem; color: var(--text); margin-bottom: 1.5rem; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card.highlight {
+    border-color: var(--accent);
+    background: rgba(88,166,255,0.05);
+  }
+
+  .card.success {
+    border-color: var(--accent2);
+    background: rgba(63,185,80,0.05);
+  }
+
+  .card.warning {
+    border-color: var(--warn);
+    background: rgba(210,153,34,0.08);
+  }
+
+  /* NOTE / CALLOUT */
+  .callout {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    border-left: 3px solid;
+  }
+
+  .callout.info {
+    background: rgba(88,166,255,0.07);
+    border-color: var(--accent);
+    color: #a5c8f8;
+  }
+
+  .callout.tip {
+    background: rgba(63,185,80,0.07);
+    border-color: var(--accent2);
+    color: #90d9a0;
+  }
+
+  .callout.warn {
+    background: rgba(210,153,34,0.07);
+    border-color: var(--warn);
+    color: #e0c069;
+  }
+
+  .callout-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .callout p { margin: 0; color: inherit; }
+
+  /* SOLUBILITY TABLE */
+  .sol-table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
+
+  .sol-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .sol-table th {
+    background: var(--surface2);
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sol-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+    vertical-align: top;
+  }
+
+  .sol-table tr:last-child td { border-bottom: none; }
+  .sol-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .badge.S { background: rgba(63,185,80,0.15); color: var(--soluble); border: 1px solid rgba(63,185,80,0.3); }
+  .badge.I { background: rgba(248,81,73,0.15); color: var(--insoluble); border: 1px solid rgba(248,81,73,0.3); }
+  .badge.P { background: rgba(210,153,34,0.15); color: var(--partial); border: 1px solid rgba(210,153,34,0.3); }
+
+  .ion-chip {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    margin: 2px;
+  }
+
+  /* INTERACTIVE PREDICTOR */
+  .predictor-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .predictor-selects {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .predictor-selects span {
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--muted);
+  }
+
+  select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  select:focus { border-color: var(--accent); }
+
+  .predict-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #0d1117;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-bottom: 1rem;
+  }
+
+  .predict-btn:hover { opacity: 0.9; }
+  .predict-btn:active { transform: scale(0.99); }
+
+  .prediction-result {
+    display: none;
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border: 1px solid;
+    animation: fadeSlide 0.4s ease;
+  }
+
+  .prediction-result.soluble {
+    background: rgba(63,185,80,0.08);
+    border-color: var(--soluble);
+  }
+
+  .prediction-result.insoluble {
+    background: rgba(248,81,73,0.08);
+    border-color: var(--insoluble);
+  }
+
+  .prediction-result.partial {
+    background: rgba(210,153,34,0.08);
+    border-color: var(--partial);
+  }
+
+  .result-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-rule {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* RULES ACCORDION */
+  .rule-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+
+  .rule-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    background: var(--surface);
+    transition: background 0.2s;
+    gap: 1rem;
+    user-select: none;
+  }
+
+  .rule-header:hover { background: var(--surface2); }
+
+  .rule-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 20px;
+  }
+
+  .rule-title { flex: 1; font-weight: 500; font-size: 15px; }
+
+  .rule-arrow {
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+
+  .rule-item.open .rule-arrow { transform: rotate(180deg); }
+
+  .rule-body {
+    display: none;
+    padding: 1rem 1.25rem 1.25rem;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .rule-item.open .rule-body { display: block; }
+
+  .exception-list {
+    margin-top: 0.75rem;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .exception-list li {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  /* QUIZ */
+  .quiz-progress {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .qp-bar {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--surface3);
+    transition: background 0.4s;
+  }
+  .qp-bar.correct { background: var(--accent2); }
+  .qp-bar.wrong { background: var(--danger); }
+  .qp-bar.active { background: var(--accent); }
+
+  .quiz-q-wrap {
+    display: none;
+    animation: fadeSlide 0.4s ease;
+  }
+
+  .quiz-q-wrap.active { display: block; }
+
+  .quiz-q {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .quiz-formula {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--purple);
+    font-size: 1.3rem;
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .quiz-opt {
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    text-align: left;
+    transition: border-color 0.2s, background 0.2s, transform 0.1s;
+  }
+
+  .quiz-opt:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: rgba(88,166,255,0.05);
+  }
+
+  .quiz-opt:active:not(:disabled) { transform: scale(0.99); }
+
+  .quiz-opt.correct {
+    border-color: var(--soluble);
+    background: rgba(63,185,80,0.12);
+    color: var(--soluble);
+  }
+
+  .quiz-opt.wrong {
+    border-color: var(--insoluble);
+    background: rgba(248,81,73,0.12);
+    color: var(--insoluble);
+  }
+
+  .quiz-opt:disabled { cursor: not-allowed; opacity: 0.7; }
+
+  .quiz-explain {
+    display: none;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    margin-top: 0.75rem;
+    font-size: 14px;
+    animation: fadeSlide 0.3s ease;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .quiz-explain.show { display: block; }
+
+  .quiz-explain strong { color: var(--text); }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 24px;
+    border-radius: var(--radius);
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0d1117;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-outline {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text);
+  }
+
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-row { display: flex; gap: 1rem; margin-top: 1rem; }
+
+  /* SCORE */
+  .score-display {
+    text-align: center;
+    padding: 3rem 2rem;
+    display: none;
+    animation: fadeSlide 0.5s ease;
+  }
+
+  .score-display.show { display: block; }
+
+  .score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 4px solid;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .score-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .score-label { font-size: 12px; letter-spacing: 1px; opacity: 0.7; }
+
+  /* SIMULATOR */
+  .sim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .beaker {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .beaker-label {
+    position: absolute;
+    top: 10px;
+    left: 0; right: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .beaker-liquid {
+    width: 80%;
+    border-radius: 4px 4px 6px 6px;
+    transition: height 0.6s ease, background 0.6s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .beaker-ions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+  }
+
+  .ion-bubble {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    animation: float 2s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .precipitate {
+    width: 70%;
+    height: 0;
+    background: repeating-linear-gradient(45deg, #666 0, #666 2px, transparent 2px, transparent 8px);
+    border-radius: 3px;
+    transition: height 0.8s ease;
+    margin-top: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .sim-controls {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sim-result {
+    font-size: 14px;
+    color: var(--muted);
+    min-height: 50px;
+    padding: 0.75rem;
+    background: var(--surface2);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sim-result .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* EQUATION BUILDER */
+  .eq-drop-zone {
+    min-height: 60px;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+
+  .eq-drop-zone.drag-over { border-color: var(--accent); background: rgba(88,166,255,0.04); }
+
+  .eq-hint { color: var(--muted); font-size: 14px; font-style: italic; }
+
+  .draggable-ion {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    cursor: grab;
+    transition: border-color 0.2s;
+    user-select: none;
+  }
+
+  .draggable-ion:hover { border-color: var(--accent); }
+  .draggable-ion:active { cursor: grabbing; }
+
+  /* FLOWCHART */
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .flow-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .flow-box.decision {
+    background: rgba(88,166,255,0.08);
+    border-color: var(--accent);
+    color: var(--text);
+    transform: rotate(0deg);
+  }
+
+  .flow-box.answer-yes {
+    background: rgba(63,185,80,0.08);
+    border-color: var(--soluble);
+    color: var(--soluble);
+    font-weight: 600;
+    max-width: 220px;
+  }
+
+  .flow-box.answer-no {
+    background: rgba(248,81,73,0.08);
+    border-color: var(--insoluble);
+    color: var(--insoluble);
+    font-weight: 600;
+    max-width: 220px;
+  }
+
+  .flow-arrow {
+    width: 2px;
+    height: 28px;
+    background: var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+  }
+
+  .flow-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--border);
+    margin-left: -1px;
+  }
+
+  .flow-branch {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    width: 100%;
+    max-width: 500px;
+    align-items: start;
+    position: relative;
+  }
+
+  .branch-yes, .branch-no {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .branch-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    padding: 4px;
+  }
+
+  .branch-line-h {
+    height: 2px;
+    background: var(--border);
+    width: 100%;
+  }
+
+  .branch-line-v {
+    width: 2px;
+    background: var(--border);
+    height: 28px;
+    margin: 0 auto;
+  }
+
+  /* FLASHCARDS */
+  .flashcard-wrap {
+    perspective: 1000px;
+    height: 220px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+  }
+
+  .flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+  }
+
+  .flashcard.flipped { transform: rotateY(180deg); }
+
+  .fc-face {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .fc-front {
+    background: var(--surface);
+  }
+
+  .fc-back {
+    background: var(--surface2);
+    transform: rotateY(180deg);
+  }
+
+  .fc-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .fc-content {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .fc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .fc-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* SECTION NAV BUTTONS */
+  .section-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  /* HERO */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(88,166,255,0.1);
+    border: 1px solid rgba(88,166,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    margin-top: 4px;
+  }
+
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiFall 2s ease-in forwards;
+  }
+
+  @keyframes confettiFall {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(600px) rotate(720deg); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .quiz-options { grid-template-columns: 1fr; }
+    .sim-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .predictor-selects { grid-template-columns: 1fr; }
+    .predictor-selects span { display: none; }
+  }
+
+  sub { font-size: 0.75em; }
+  sup { font-size: 0.75em; }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .ion-pools {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .ion-pool {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .ion-pool-label {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .ion-pool-ions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar" style="width:14%"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">CHM3U · Solubility Rules</div>
+  <div class="nav-progress" id="navDots"></div>
+</nav>
+
+<!-- SECTION 0: HERO -->
+<section id="s0" class="active">
+  <div class="page-num">// INTRO</div>
+  <div class="hero-badge">Grade 11 Chemistry · Unit 3</div>
+  <h1>Solubility<br><em>Rules</em></h1>
+  <p class="lead">Some ionic compounds dissolve completely in water. Others sink to the bottom. Learning to predict which is which is a superpower in chemistry.</p>
+  <p>By the end of this lesson you'll be able to <strong>predict solubility for any ionic compound</strong>, write net ionic equations, and identify precipitates in double displacement reactions.</p>
+
+  <div class="callout info">
+    <div class="callout-icon">📖</div>
+    <p><strong>How this lesson works:</strong> 7 sections — Concepts → Rules → Interactive Practice → Quiz. Click through at your own pace. The quiz at the end tracks your score.</p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-num">7</div>
+      <p class="stat-desc">core solubility rules</p>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">12</div>
+      <p class="stat-desc">quiz questions</p>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">∞</div>
+      <p class="stat-desc">compounds to predict</p>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-primary" onclick="goTo(1)">Start Lesson →</button>
+  </div>
+</section>
+
+<!-- SECTION 1: WHAT IS SOLUBILITY -->
+<section id="s1">
+  <div class="page-num">// 01 — FOUNDATIONS</div>
+  <h2>What is Solubility?</h2>
+  <p class="lead">When an ionic compound dissolves in water, it breaks apart into its <strong>cations (+)</strong> and <strong>anions (−)</strong>, surrounded by water molecules.</p>
+
+  <div class="card">
+    <h3>The dissolving process</h3>
+    <p>Take table salt — NaCl. When it dissolves:</p>
+    <pre style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text);overflow-x:auto;margin-bottom:1rem;">NaCl(s) → Na⁺(aq) + Cl⁻(aq)</pre>
+    <p>The <strong>(s)</strong> means solid, and <strong>(aq)</strong> means aqueous (dissolved in water). When a compound does NOT dissolve, we use <strong>(s)</strong> as the product too.</p>
+  </div>
+
+  <div class="card">
+    <h3>Solubility definitions</h3>
+    <div class="sol-table-wrap">
+      <table class="sol-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Meaning</th>
+            <th>Amount dissolved at 25°C</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge S">S</span> Soluble</td>
+            <td>Dissolves significantly in water</td>
+            <td>&gt; 1 g per 100 mL water</td>
+          </tr>
+          <tr>
+            <td><span class="badge P">P</span> Slightly soluble</td>
+            <td>Small amount dissolves</td>
+            <td>0.1 – 1 g per 100 mL</td>
+          </tr>
+          <tr>
+            <td><span class="badge I">I</span> Insoluble</td>
+            <td>Does not dissolve meaningfully</td>
+            <td>&lt; 0.1 g per 100 mL</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-icon">⚡</div>
+    <p><strong>Important:</strong> "Insoluble" doesn't mean <em>zero</em> dissolves — it means so little that for most purposes we treat it as zero.</p>
+  </div>
+
+  <h3 style="margin-bottom:0.75rem">Why does it matter?</h3>
+  <p>When two solutions are mixed, sometimes a solid forms — called a <strong>precipitate</strong>. Predicting whether a precipitate forms is critical in:</p>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem">
+    <span class="ion-chip">Water treatment</span>
+    <span class="ion-chip">Drug synthesis</span>
+    <span class="ion-chip">Environmental science</span>
+    <span class="ion-chip">Qualitative analysis</span>
+    <span class="ion-chip">Industrial chemistry</span>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-outline" onclick="goTo(0)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(2)">The Rules →</button>
+  </div>
+</section>
+
+<!-- SECTION 2: THE RULES -->
+<section id="s2">
+  <div class="page-num">// 02 — THE RULES</div>
+  <h2>The 7 Solubility Rules</h2>
+  <p class="lead">These rules let you predict solubility for any ionic compound. Click each rule to expand it.</p>
+
+  <div class="callout tip">
+    <div class="callout-icon">💡</div>
+    <p><strong>Memory tip:</strong> Start with the "always soluble" rules, then work through the exceptions. If no rule applies, assume insoluble.</p>
+  </div>
+
+  <div id="rulesAccordion"></div>
+
+  <!-- Full solubility table -->
+  <h3 style="margin:1.5rem 0 0.75rem">Quick Reference Table</h3>
+  <div class="sol-table-wrap">
+    <table class="sol-table">
+      <thead>
+        <tr>
+          <th>Ion / Group</th>
+          <th>Result</th>
+          <th>Exceptions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NO₃⁻ (nitrate), CH₃COO⁻ (acetate)</td>
+          <td><span class="badge S">SOLUBLE</span></td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>Group 1 ions (Li⁺, Na⁺, K⁺, Rb⁺, Cs⁺), NH₄⁺</td>
+          <td><span class="badge S">SOLUBLE</span></td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>Cl⁻, Br⁻, I⁻ (halides)</td>
+          <td><span class="badge S">SOLUBLE</span></td>
+          <td>Ag⁺, Pb²⁺, Hg₂²⁺ form insoluble precipitates</td>
+        </tr>
+        <tr>
+          <td>SO₄²⁻ (sulfate)</td>
+          <td><span class="badge S">SOLUBLE</span></td>
+          <td>Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺ form insoluble sulfates</td>
+        </tr>
+        <tr>
+          <td>OH⁻ (hydroxide)</td>
+          <td><span class="badge I">INSOLUBLE</span></td>
+          <td>Group 1 + Ba²⁺ are soluble; Ca²⁺, Sr²⁺ slightly soluble</td>
+        </tr>
+        <tr>
+          <td>CO₃²⁻, PO₄³⁻, CrO₄²⁻, S²⁻</td>
+          <td><span class="badge I">INSOLUBLE</span></td>
+          <td>Group 1 + NH₄⁺ are always soluble</td>
+        </tr>
+        <tr>
+          <td>Most other compounds</td>
+          <td><span class="badge I">INSOLUBLE</span></td>
+          <td>Use above rules first</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-outline" onclick="goTo(1)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Decision Tool →</button>
+  </div>
+</section>
+
+<!-- SECTION 3: FLOWCHART + PREDICTOR -->
+<section id="s3">
+  <div class="page-num">// 03 — INTERACTIVE TOOLS</div>
+  <h2>Predict Solubility</h2>
+  <p class="lead">Use the flowchart to walk through the logic, then try the predictor below.</p>
+
+  <!-- Decision Flowchart -->
+  <div class="card">
+    <h3 style="margin-bottom:1rem">Decision Flowchart</h3>
+    <div class="flowchart">
+      <div class="flow-box" style="background:rgba(188,140,255,0.08);border-color:var(--purple);color:var(--text);">
+        <strong>Identify the ions</strong><br>
+        <span style="font-size:13px;color:var(--muted)">Cation + Anion</span>
+      </div>
+      <div class="flow-arrow"></div>
+      <div class="flow-box decision">Does compound contain NO₃⁻, CH₃COO⁻, Group 1, or NH₄⁺?</div>
+      <div class="flow-branch">
+        <div class="branch-yes">
+          <div class="branch-line-h"></div>
+          <div class="branch-line-v"></div>
+          <div class="branch-label">YES</div>
+          <div class="flow-box answer-yes">✓ SOLUBLE</div>
+        </div>
+        <div></div>
+        <div class="branch-no">
+          <div class="branch-line-h"></div>
+          <div class="branch-line-v"></div>
+          <div class="branch-label">NO</div>
+          <div class="flow-box decision" style="max-width:200px;font-size:13px;">Does it contain Cl⁻, Br⁻, or I⁻?</div>
+          <div class="branch-line-v"></div>
+          <div class="flow-box decision" style="max-width:200px;font-size:13px;">Is the cation Ag⁺, Pb²⁺, or Hg₂²⁺?</div>
+          <div style="display:flex;gap:0.5rem;width:100%;justify-content:center;margin-top:0">
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+              <div class="branch-line-v"></div>
+              <div class="branch-label" style="color:var(--soluble)">NO</div>
+              <div class="flow-box answer-yes" style="font-size:13px;padding:8px 12px">✓ SOLUBLE</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1">
+              <div class="branch-line-v"></div>
+              <div class="branch-label" style="color:var(--insoluble)">YES</div>
+              <div class="flow-box answer-no" style="font-size:13px;padding:8px 12px">✗ INSOLUBLE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:1rem;font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace">... continue checking SO₄²⁻, OH⁻, CO₃²⁻, etc.</div>
+    </div>
+  </div>
+
+  <!-- Compound Predictor -->
+  <h3 style="margin-bottom:0.75rem">Compound Predictor</h3>
+  <div class="predictor-wrap">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Build an ionic compound and predict its solubility:</p>
+    <div class="predictor-selects">
+      <select id="cationSel">
+        <option value="">— Cation —</option>
+        <option value="Li">Li⁺ (lithium)</option>
+        <option value="Na">Na⁺ (sodium)</option>
+        <option value="K">K⁺ (potassium)</option>
+        <option value="NH4">NH₄⁺ (ammonium)</option>
+        <option value="Ca">Ca²⁺ (calcium)</option>
+        <option value="Mg">Mg²⁺ (magnesium)</option>
+        <option value="Ba">Ba²⁺ (barium)</option>
+        <option value="Fe2">Fe²⁺ (iron II)</option>
+        <option value="Fe3">Fe³⁺ (iron III)</option>
+        <option value="Cu">Cu²⁺ (copper II)</option>
+        <option value="Ag">Ag⁺ (silver)</option>
+        <option value="Pb">Pb²⁺ (lead)</option>
+        <option value="Zn">Zn²⁺ (zinc)</option>
+        <option value="Al">Al³⁺ (aluminum)</option>
+        <option value="Hg2">Hg₂²⁺ (mercury I)</option>
+        <option value="Sr">Sr²⁺ (strontium)</option>
+      </select>
+      <span>+</span>
+      <select id="anionSel">
+        <option value="">— Anion —</option>
+        <option value="NO3">NO₃⁻ (nitrate)</option>
+        <option value="CH3COO">CH₃COO⁻ (acetate)</option>
+        <option value="Cl">Cl⁻ (chloride)</option>
+        <option value="Br">Br⁻ (bromide)</option>
+        <option value="I">I⁻ (iodide)</option>
+        <option value="SO4">SO₄²⁻ (sulfate)</option>
+        <option value="OH">OH⁻ (hydroxide)</option>
+        <option value="CO3">CO₃²⁻ (carbonate)</option>
+        <option value="PO4">PO₄³⁻ (phosphate)</option>
+        <option value="S">S²⁻ (sulfide)</option>
+        <option value="CrO4">CrO₄²⁻ (chromate)</option>
+      </select>
+    </div>
+    <button class="predict-btn" onclick="predictSolubility()">Predict Solubility</button>
+    <div class="prediction-result" id="predResult">
+      <div class="result-label" id="predLabel"></div>
+      <div class="result-rule" id="predRule"></div>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-outline" onclick="goTo(2)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Beaker Lab →</button>
+  </div>
+</section>
+
+<!-- SECTION 4: MIXING SIMULATOR -->
+<section id="s4">
+  <div class="page-num">// 04 — VIRTUAL LAB</div>
+  <h2>Beaker Mixing Lab</h2>
+  <p class="lead">Mix two ionic solutions and observe if a precipitate forms. This is how <strong>double displacement reactions</strong> work.</p>
+
+  <div class="card">
+    <h3 style="margin-bottom:0.5rem">How double displacement works</h3>
+    <pre style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);overflow-x:auto;">AB + CD → AD + CB
+
+If AD or CB is insoluble → precipitate forms!</pre>
+    <p style="margin-top:0.75rem;font-size:14px;">The ions "switch partners." We then check if either product is insoluble.</p>
+  </div>
+
+  <div class="sim-controls">
+    <select id="sol1" style="flex:1;min-width:140px">
+      <option value="NaCl">NaCl(aq) — sodium chloride</option>
+      <option value="AgNO3">AgNO₃(aq) — silver nitrate</option>
+      <option value="KOH">KOH(aq) — potassium hydroxide</option>
+      <option value="BaCl2">BaCl₂(aq) — barium chloride</option>
+      <option value="Na2SO4">Na₂SO₄(aq) — sodium sulfate</option>
+      <option value="CuSO4">CuSO₄(aq) — copper sulfate</option>
+      <option value="Pb(NO3)2">Pb(NO₃)₂(aq) — lead nitrate</option>
+      <option value="FeCl3">FeCl₃(aq) — iron(III) chloride</option>
+      <option value="NaOH">NaOH(aq) — sodium hydroxide</option>
+    </select>
+    <select id="sol2" style="flex:1;min-width:140px">
+      <option value="AgNO3">AgNO₃(aq) — silver nitrate</option>
+      <option value="NaCl">NaCl(aq) — sodium chloride</option>
+      <option value="CuSO4">CuSO₄(aq) — copper sulfate</option>
+      <option value="BaCl2">BaCl₂(aq) — barium chloride</option>
+      <option value="Na2SO4">Na₂SO₄(aq) — sodium sulfate</option>
+      <option value="KOH">KOH(aq) — potassium hydroxide</option>
+      <option value="Pb(NO3)2">Pb(NO₃)₂(aq) — lead nitrate</option>
+      <option value="NaOH">NaOH(aq) — sodium hydroxide</option>
+      <option value="FeCl3">FeCl₃(aq) — iron(III) chloride</option>
+    </select>
+    <button class="btn btn-primary" onclick="mixSolutions()" style="white-space:nowrap">Mix!</button>
+  </div>
+
+  <div class="sim-grid">
+    <div class="beaker" id="beaker1">
+      <div class="beaker-label" id="b1label">Solution A</div>
+      <div class="beaker-liquid" id="liquid1" style="height:80px;background:#1a3a5c;">
+        <div class="beaker-ions" id="ions1"></div>
+      </div>
+    </div>
+    <div class="beaker" id="beaker2">
+      <div class="beaker-label" id="b2label">Solution B</div>
+      <div class="beaker-liquid" id="liquid2" style="height:80px;background:#1a3a5c;">
+        <div class="beaker-ions" id="ions2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sim-result" id="simResult">
+    <div class="dot" style="background:var(--muted)"></div>
+    <span style="color:var(--muted)">Select two solutions and click Mix to see what happens.</span>
+  </div>
+
+  <div id="simEquation" style="display:none;margin-top:1rem;">
+    <div class="callout info">
+      <div>
+        <strong style="display:block;margin-bottom:0.5rem">Molecular equation:</strong>
+        <code id="molEq" style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text)"></code>
+        <strong style="display:block;margin:0.75rem 0 0.5rem">Net ionic equation:</strong>
+        <code id="netEq" style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--text)"></code>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-outline" onclick="goTo(3)">← Back</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Flashcards →</button>
+  </div>
+</section>
+
+<!-- SECTION 5: FLASHCARDS -->
+<section id="s5">
+  <div class="page-num">// 05 — REVIEW</div>
+  <h2>Flashcard Review</h2>
+  <p class="lead">Click each card to reveal the answer. Master all 8 before moving to the quiz.</p>
+
+  <div class="fc-nav">
+    <button class="btn btn-outline" onclick="prevCard()" style="padding:8px 16px">←</button>
+    <span class="fc-count" id="fcCount">1 / 8</span>
+    <button class="btn btn-outline" onclick="nextCard()" style="padding:8px 16px">→</button>
+  </div>
+
+  <div class="flashcard-wrap" onclick="flipCard()">
+    <div class="flashcard" id="flashcard">
+      <div class="fc-face fc-front">
+        <div class="fc-tag">CLICK TO FLIP</div>
+        <div class="fc-content" id="fcFront"></div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="fc-tag">ANSWER</div>
+        <div class="fc-content" id="fcBack"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-icon">🎯</div>
+    <p>Try to answer before flipping! Say your answer out loud — it's the most effective study technique.</p>
+  </div>
+
+  <div class="section-nav">
+    <button class="btn btn-outline" onclick="goTo(4)">← Back</button>
+    <button class="btn btn-primary" onclick="startQuiz()">Take the Quiz →</button>
+  </div>
+</section>
+
+<!-- SECTION 6: QUIZ -->
+<section id="s6">
+  <div class="page-num">// 06 — QUIZ</div>
+  <h2>Solubility Quiz</h2>
+  <p class="lead" id="quizIntro">Test your knowledge. 12 questions — from basic recall to multi-step prediction.</p>
+
+  <div class="quiz-progress" id="quizProgress"></div>
+
+  <div id="quizQuestions"></div>
+
+  <div class="score-display" id="scoreDisplay">
+    <div class="score-circle" id="scoreCircle">
+      <span class="score-number" id="scoreNum">—</span>
+      <span class="score-label">/ 12</span>
+    </div>
+    <h3 id="scoreMsg" style="margin-bottom:0.75rem"></h3>
+    <p id="scoreDetail" style="margin-bottom:1.5rem"></p>
+    <div class="btn-row" style="justify-content:center">
+      <button class="btn btn-outline" onclick="restartQuiz()">Retake Quiz</button>
+      <button class="btn btn-primary" onclick="goTo(0)">Back to Start</button>
+    </div>
+  </div>
+
+  <div class="section-nav" id="quizBackBtn">
+    <button class="btn btn-outline" onclick="goTo(5)">← Back to Flashcards</button>
+  </div>
+</section>
+
+<script>
+/* ===== DATA ===== */
+const RULES = [
+  {
+    num:"01",
+    title:"Nitrates and Acetates — Always Soluble",
+    ions:["NO₃⁻","CH₃COO⁻"],
+    body:`All compounds containing nitrate (NO₃⁻) or acetate (CH₃COO⁻) ions are soluble. No exceptions.`,
+    examples:["KNO₃ ✓","Ca(NO₃)₂ ✓","Fe(NO₃)₃ ✓","NaCH₃COO ✓"],
+    exceptions:[]
+  },
+  {
+    num:"02",
+    title:"Group 1 ions and Ammonium — Always Soluble",
+    ions:["Li⁺","Na⁺","K⁺","Rb⁺","Cs⁺","NH₄⁺"],
+    body:`Any ionic compound where the cation is a Group 1 (alkali metal) ion or ammonium (NH₄⁺) is soluble. No exceptions.`,
+    examples:["NaCl ✓","K₂CO₃ ✓","LiOH ✓","(NH₄)₂SO₄ ✓","Cs₂S ✓"],
+    exceptions:[]
+  },
+  {
+    num:"03",
+    title:"Halides (Cl⁻, Br⁻, I⁻) — Generally Soluble",
+    ions:["Cl⁻","Br⁻","I⁻"],
+    body:`Most chloride, bromide, and iodide salts are soluble. However, three cations form insoluble halides.`,
+    examples:["NaCl ✓","MgCl₂ ✓","AlBr₃ ✓"],
+    exceptions:["AgCl (↓)","PbCl₂ (↓)","Hg₂Cl₂ (↓)","AgBr (↓)","AgI (↓)"]
+  },
+  {
+    num:"04",
+    title:"Sulfates (SO₄²⁻) — Generally Soluble",
+    ions:["SO₄²⁻"],
+    body:`Most sulfates are soluble. Key exceptions include barium, lead, calcium, and strontium sulfates, which are insoluble or slightly soluble.`,
+    examples:["Na₂SO₄ ✓","CuSO₄ ✓","Al₂(SO₄)₃ ✓"],
+    exceptions:["BaSO₄ (↓)","PbSO₄ (↓)","CaSO₄ (slightly ↓)","SrSO₄ (↓)"]
+  },
+  {
+    num:"05",
+    title:"Hydroxides (OH⁻) — Generally Insoluble",
+    ions:["OH⁻"],
+    body:`Most hydroxides are insoluble. The exceptions are Group 1 hydroxides and barium hydroxide, which are soluble. Calcium and strontium hydroxides are slightly soluble.`,
+    examples:["Cu(OH)₂ (↓)","Fe(OH)₃ (↓)","Mg(OH)₂ (↓)","Al(OH)₃ (↓)"],
+    exceptions:["NaOH ✓","KOH ✓","LiOH ✓","Ba(OH)₂ ✓","Ca(OH)₂ (slight)"]
+  },
+  {
+    num:"06",
+    title:"Carbonates, Phosphates, Chromates, Sulfides — Insoluble",
+    ions:["CO₃²⁻","PO₄³⁻","CrO₄²⁻","S²⁻"],
+    body:`These anions almost always form insoluble compounds. The only exceptions are with Group 1 cations or ammonium (which are always soluble by Rule 2).`,
+    examples:["CaCO₃ (↓)","Fe₂(SO₃)₃ (↓)","Ag₂CrO₄ (↓)","ZnS (↓)","Cu₃(PO₄)₂ (↓)"],
+    exceptions:["Na₂CO₃ ✓","K₂S ✓","(NH₄)₃PO₄ ✓"]
+  },
+  {
+    num:"07",
+    title:"Default Rule — When In Doubt",
+    ions:[],
+    body:`If you can't identify a specific rule for a compound, treat it as insoluble. Most ionic compounds do not dissolve in water. The rules above cover the major soluble exceptions.`,
+    examples:[],
+    exceptions:[]
+  }
+];
+
+const FLASHCARDS = [
+  { q:"What is the solubility of AgCl?", a:"INSOLUBLE (↓)\nSilver chloride is an exception to the 'halides are soluble' rule. Ag⁺ forms insoluble chlorides, bromides, and iodides." },
+  { q:"Are all nitrate compounds soluble?", a:"YES — always!\nNitrate (NO₃⁻) compounds have no exceptions. Any compound with NO₃⁻ is soluble (aq)." },
+  { q:"Is Fe(OH)₃ soluble?", a:"INSOLUBLE (↓)\nIron(III) hydroxide is a precipitate. Most hydroxides are insoluble — only Group 1 and Ba²⁺ form soluble hydroxides." },
+  { q:"What does (aq) vs (s) mean in a net ionic equation?", a:"(aq) = aqueous = dissolved/dissociated into ions\n(s) = solid = not dissolved; it's a precipitate or undissolved solid." },
+  { q:"Is BaSO₄ soluble?", a:"INSOLUBLE (↓)\nBarium sulfate is a key exception to the 'sulfates are soluble' rule. Ba²⁺, Pb²⁺, and Sr²⁺ form insoluble sulfates." },
+  { q:"Na₂CO₃ + CaCl₂ → ?\nDoes a precipitate form?", a:"YES! CaCO₃ precipitates.\nCarbonates are generally insoluble. Ca²⁺ is not Group 1 or NH₄⁺, so CaCO₃(s) forms. NaCl stays in solution." },
+  { q:"What cations always form soluble compounds, no exceptions?", a:"Group 1 (Li⁺, Na⁺, K⁺, Rb⁺, Cs⁺) and ammonium (NH₄⁺).\nRule 2: these cations are always soluble with any anion." },
+  { q:"What is a net ionic equation?", a:"A net ionic equation shows only the ions that actually react — excluding spectator ions.\nExample: Ag⁺(aq) + Cl⁻(aq) → AgCl(s)" }
+];
+
+const REACTIONS = {
+  "NaCl+AgNO3": {
+    mol:"NaCl(aq) + AgNO₃(aq) → AgCl(s) + NaNO₃(aq)",
+    net:"Ag⁺(aq) + Cl⁻(aq) → AgCl(s)",
+    ppt:"AgCl", color:"#e8e8e8", soluble:false,
+    description:"White precipitate of silver chloride forms instantly."
+  },
+  "AgNO3+NaCl": {
+    mol:"AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)",
+    net:"Ag⁺(aq) + Cl⁻(aq) → AgCl(s)",
+    ppt:"AgCl", color:"#e8e8e8", soluble:false,
+    description:"White precipitate of silver chloride forms instantly."
+  },
+  "BaCl2+Na2SO4": {
+    mol:"BaCl₂(aq) + Na₂SO₄(aq) → BaSO₄(s) + 2NaCl(aq)",
+    net:"Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s)",
+    ppt:"BaSO₄", color:"#f5f5dc", soluble:false,
+    description:"White barium sulfate precipitate — used in barium X-rays!"
+  },
+  "Na2SO4+BaCl2": {
+    mol:"Na₂SO₄(aq) + BaCl₂(aq) → BaSO₄(s) + 2NaCl(aq)",
+    net:"Ba²⁺(aq) + SO₄²⁻(aq) → BaSO₄(s)",
+    ppt:"BaSO₄", color:"#f5f5dc", soluble:false,
+    description:"White barium sulfate precipitate — used in barium X-rays!"
+  },
+  "KOH+CuSO4": {
+    mol:"2KOH(aq) + CuSO₄(aq) → Cu(OH)₂(s) + K₂SO₄(aq)",
+    net:"Cu²⁺(aq) + 2OH⁻(aq) → Cu(OH)₂(s)",
+    ppt:"Cu(OH)₂", color:"#1a6bca", soluble:false,
+    description:"Striking blue precipitate of copper(II) hydroxide."
+  },
+  "CuSO4+KOH": {
+    mol:"CuSO₄(aq) + 2KOH(aq) → Cu(OH)₂(s) + K₂SO₄(aq)",
+    net:"Cu²⁺(aq) + 2OH⁻(aq) → Cu(OH)₂(s)",
+    ppt:"Cu(OH)₂", color:"#1a6bca", soluble:false,
+    description:"Striking blue precipitate of copper(II) hydroxide."
+  },
+  "Pb(NO3)2+Na2SO4": {
+    mol:"Pb(NO₃)₂(aq) + Na₂SO₄(aq) → PbSO₄(s) + 2NaNO₃(aq)",
+    net:"Pb²⁺(aq) + SO₄²⁻(aq) → PbSO₄(s)",
+    ppt:"PbSO₄", color:"#dddddd", soluble:false,
+    description:"White lead sulfate precipitate forms."
+  },
+  "Na2SO4+Pb(NO3)2": {
+    mol:"Na₂SO₄(aq) + Pb(NO₃)₂(aq) → PbSO₄(s) + 2NaNO₃(aq)",
+    net:"Pb²⁺(aq) + SO₄²⁻(aq) → PbSO₄(s)",
+    ppt:"PbSO₄", color:"#dddddd", soluble:false,
+    description:"White lead sulfate precipitate forms."
+  },
+  "FeCl3+NaOH": {
+    mol:"FeCl₃(aq) + 3NaOH(aq) → Fe(OH)₃(s) + 3NaCl(aq)",
+    net:"Fe³⁺(aq) + 3OH⁻(aq) → Fe(OH)₃(s)",
+    ppt:"Fe(OH)₃", color:"#8b4513", soluble:false,
+    description:"Rust-brown iron(III) hydroxide precipitate — looks like actual rust!"
+  },
+  "NaOH+FeCl3": {
+    mol:"3NaOH(aq) + FeCl₃(aq) → Fe(OH)₃(s) + 3NaCl(aq)",
+    net:"Fe³⁺(aq) + 3OH⁻(aq) → Fe(OH)₃(s)",
+    ppt:"Fe(OH)₃", color:"#8b4513", soluble:false,
+    description:"Rust-brown iron(III) hydroxide precipitate — looks like actual rust!"
+  },
+};
+
+const SOLUBILITY_DB = {
+  // [cation][anion] → {result, rule}
+  // Group 1
+  "Li:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Li:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Li:Cl":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:Br":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:I":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:SO4":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:OH":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds. (LiOH is soluble)",
+  "Li:CO3":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:PO4":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:S":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Li:CrO4":"S:Rule 2 — Group 1 cations (Li⁺) always form soluble compounds.",
+  "Na:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Na:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Na:Cl":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:Br":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:I":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:SO4":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:OH":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds. NaOH is a strong base.",
+  "Na:CO3":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:PO4":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:S":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "Na:CrO4":"S:Rule 2 — Group 1 cations (Na⁺) always form soluble compounds.",
+  "K:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "K:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "K:Cl":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:Br":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:I":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:SO4":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:OH":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds. KOH is a strong base.",
+  "K:CO3":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:PO4":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:S":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "K:CrO4":"S:Rule 2 — Group 1 cations (K⁺) always form soluble compounds.",
+  "NH4:NO3":"S:Rules 1 & 2 — Both NH₄⁺ and NO₃⁻ guarantee solubility.",
+  "NH4:CH3COO":"S:Rules 1 & 2 — Both NH₄⁺ and CH₃COO⁻ guarantee solubility.",
+  "NH4:Cl":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:Br":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:I":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:SO4":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:OH":"S:Rule 2 — NH₄⁺ always forms soluble compounds. NH₄OH is aqueous ammonia.",
+  "NH4:CO3":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:PO4":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:S":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  "NH4:CrO4":"S:Rule 2 — NH₄⁺ always forms soluble compounds.",
+  // Ca
+  "Ca:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Ca:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Ca:Cl":"S:Rule 3 — Most chlorides are soluble; Ca²⁺ is not an exception.",
+  "Ca:Br":"S:Rule 3 — Most bromides are soluble; Ca²⁺ is not an exception.",
+  "Ca:I":"S:Rule 3 — Most iodides are soluble; Ca²⁺ is not an exception.",
+  "Ca:SO4":"P:Rule 4 exception — CaSO₄ is slightly soluble (sparingly soluble). Think gypsum!",
+  "Ca:OH":"P:Rule 5 exception — Ca(OH)₂ is slightly soluble. Used in cement (lime water).",
+  "Ca:CO3":"I:Rule 6 — Carbonates are generally insoluble. Ca²⁺ is not Group 1 or NH₄⁺.",
+  "Ca:PO4":"I:Rule 6 — Phosphates are generally insoluble. Ca₃(PO₄)₂ forms in teeth and bones!",
+  "Ca:S":"I:Rule 6 — Sulfides are generally insoluble.",
+  "Ca:CrO4":"I:Rule 6 — Chromates are generally insoluble.",
+  // Mg
+  "Mg:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Mg:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Mg:Cl":"S:Rule 3 — Most chlorides are soluble.",
+  "Mg:Br":"S:Rule 3 — Most bromides are soluble.",
+  "Mg:I":"S:Rule 3 — Most iodides are soluble.",
+  "Mg:SO4":"S:Rule 4 — Most sulfates are soluble; Mg²⁺ is not an exception.",
+  "Mg:OH":"I:Rule 5 — Mg(OH)₂ is insoluble. This is milk of magnesia!",
+  "Mg:CO3":"I:Rule 6 — Carbonates are generally insoluble.",
+  "Mg:PO4":"I:Rule 6 — Phosphates are generally insoluble.",
+  "Mg:S":"I:Rule 6 — Sulfides are generally insoluble.",
+  "Mg:CrO4":"S:Rule 4 variant — MgCrO₄ is actually soluble.",
+  // Ba
+  "Ba:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Ba:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Ba:Cl":"S:Rule 3 — Most chlorides are soluble.",
+  "Ba:Br":"S:Rule 3 — Most bromides are soluble.",
+  "Ba:I":"S:Rule 3 — Most iodides are soluble.",
+  "Ba:SO4":"I:Rule 4 exception — BaSO₄ is insoluble! Key exception. Used in barium X-ray contrast.",
+  "Ba:OH":"S:Rule 5 exception — Ba(OH)₂ is one of the soluble hydroxide exceptions.",
+  "Ba:CO3":"I:Rule 6 — Carbonates are generally insoluble.",
+  "Ba:PO4":"I:Rule 6 — Phosphates are generally insoluble.",
+  "Ba:S":"I:Rule 6 — Sulfides are generally insoluble.",
+  "Ba:CrO4":"I:Rule 6 — Chromates are generally insoluble.",
+  // Ag
+  "Ag:NO3":"S:Rule 1 — All nitrates are soluble. AgNO₃ is soluble — used in photography!",
+  "Ag:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Ag:Cl":"I:Rule 3 exception — AgCl is insoluble! Ag⁺ is a key exception for halides.",
+  "Ag:Br":"I:Rule 3 exception — AgBr is insoluble. Used historically in photographic film!",
+  "Ag:I":"I:Rule 3 exception — AgI is insoluble.",
+  "Ag:SO4":"P:Rule 4 — Ag₂SO₄ is slightly soluble.",
+  "Ag:OH":"I:Rules 5+6 — AgOH is insoluble.",
+  "Ag:CO3":"I:Rule 6 — Ag₂CO₃ is insoluble.",
+  "Ag:PO4":"I:Rule 6 — Ag₃PO₄ is insoluble.",
+  "Ag:S":"I:Rule 6 — Ag₂S is insoluble. (Tarnish on silver!)",
+  "Ag:CrO4":"I:Rule 6 — Ag₂CrO₄ is insoluble and forms a brick-red precipitate.",
+  // Pb
+  "Pb:NO3":"S:Rule 1 — All nitrates are soluble. Pb(NO₃)₂ is soluble.",
+  "Pb:CH3COO":"S:Rule 1 — All acetates are soluble. ('Sugar of lead' — sweet but toxic!)",
+  "Pb:Cl":"I:Rule 3 exception — PbCl₂ is insoluble. Pb²⁺ is a halide exception.",
+  "Pb:Br":"I:Rule 3 exception — PbBr₂ is insoluble.",
+  "Pb:I":"I:Rule 3 exception — PbI₂ is insoluble, forms a beautiful golden precipitate.",
+  "Pb:SO4":"I:Rule 4 exception — PbSO₄ is insoluble! Key sulfate exception.",
+  "Pb:OH":"I:Rule 5 — Pb(OH)₂ is insoluble.",
+  "Pb:CO3":"I:Rule 6 — PbCO₃ is insoluble.",
+  "Pb:PO4":"I:Rule 6 — Pb₃(PO₄)₂ is insoluble.",
+  "Pb:S":"I:Rule 6 — PbS is insoluble. (Galena — the ore of lead!)",
+  "Pb:CrO4":"I:Rule 6 — PbCrO₄ is insoluble, forms a bright yellow precipitate.",
+  // Fe2, Fe3
+  "Fe2:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Fe2:Cl":"S:Rule 3 — Most chlorides are soluble.",
+  "Fe2:SO4":"S:Rule 4 — Most sulfates are soluble.",
+  "Fe2:OH":"I:Rule 5 — Fe(OH)₂ is insoluble (pale green solid).",
+  "Fe2:CO3":"I:Rule 6 — FeCO₃ is insoluble.",
+  "Fe2:S":"I:Rule 6 — FeS is insoluble.",
+  "Fe3:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Fe3:Cl":"S:Rule 3 — FeCl₃ is soluble.",
+  "Fe3:SO4":"S:Rule 4 — Most sulfates are soluble.",
+  "Fe3:OH":"I:Rule 5 — Fe(OH)₃ is insoluble (rust-brown precipitate).",
+  "Fe3:PO4":"I:Rule 6 — FePO₄ is insoluble.",
+  "Fe3:S":"I:Rule 6 — Fe₂S₃ is insoluble.",
+  // Cu
+  "Cu:NO3":"S:Rule 1 — All nitrates are soluble. Cu(NO₃)₂ is a blue solution.",
+  "Cu:CH3COO":"S:Rule 1 — All acetates are soluble.",
+  "Cu:Cl":"S:Rule 3 — CuCl₂ is soluble.",
+  "Cu:SO4":"S:Rule 4 — CuSO₄ is soluble — makes brilliant blue solutions!",
+  "Cu:OH":"I:Rule 5 — Cu(OH)₂ is insoluble (blue precipitate).",
+  "Cu:CO3":"I:Rule 6 — CuCO₃ is insoluble.",
+  "Cu:S":"I:Rule 6 — CuS is insoluble (black precipitate).",
+  // Zn, Al, Sr, Hg2
+  "Zn:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Zn:Cl":"S:Rule 3 — ZnCl₂ is soluble.",
+  "Zn:SO4":"S:Rule 4 — ZnSO₄ is soluble.",
+  "Zn:OH":"I:Rule 5 — Zn(OH)₂ is insoluble.",
+  "Zn:CO3":"I:Rule 6 — ZnCO₃ is insoluble.",
+  "Zn:S":"I:Rule 6 — ZnS is insoluble (used in glow-in-the-dark materials).",
+  "Al:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Al:Cl":"S:Rule 3 — AlCl₃ is soluble.",
+  "Al:SO4":"S:Rule 4 — Al₂(SO₄)₃ is soluble.",
+  "Al:OH":"I:Rule 5 — Al(OH)₃ is insoluble (used in antacids!).",
+  "Al:PO4":"I:Rule 6 — AlPO₄ is insoluble.",
+  "Sr:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Sr:Cl":"S:Rule 3 — SrCl₂ is soluble.",
+  "Sr:SO4":"I:Rule 4 exception — SrSO₄ is insoluble. Sr²⁺ is a sulfate exception.",
+  "Sr:OH":"P:Rule 5 exception — Sr(OH)₂ is slightly soluble.",
+  "Sr:CO3":"I:Rule 6 — SrCO₃ is insoluble.",
+  "Hg2:NO3":"S:Rule 1 — All nitrates are soluble.",
+  "Hg2:Cl":"I:Rule 3 exception — Hg₂Cl₂ is insoluble (calomel). Hg₂²⁺ is a halide exception.",
+  "Hg2:Br":"I:Rule 3 exception — Hg₂Br₂ is insoluble.",
+  "Hg2:SO4":"P:Rule 4 — Hg₂SO₄ is slightly soluble.",
+};
+
+const QUIZ_QS = [
+  {
+    q:"What is the solubility of silver nitrate, AgNO₃?",
+    formula:"AgNO₃",
+    opts:["Soluble","Insoluble","Slightly soluble","Cannot be determined"],
+    ans:0,
+    explain:"Rule 1: All nitrate compounds are soluble, no exceptions. AgNO₃(aq) dissociates fully in water."
+  },
+  {
+    q:"Lead(II) iodide, PbI₂, is added to water. What happens?",
+    formula:"PbI₂",
+    opts:["Dissolves completely","Forms a precipitate","Slightly dissolves","Reacts with water"],
+    ans:1,
+    explain:"Rule 3 exception: Pb²⁺ forms insoluble halides. PbI₂(s) is a bright golden-yellow precipitate — beautiful!"
+  },
+  {
+    q:"Which of these compounds is INSOLUBLE in water?",
+    formula:"",
+    opts:["KOH","NaOH","Ba(OH)₂","Cu(OH)₂"],
+    ans:3,
+    explain:"Rule 5: Most hydroxides are insoluble. K⁺, Na⁺ (Group 1) and Ba²⁺ are the exceptions. Cu(OH)₂ has no exemption — it's insoluble (blue precipitate)."
+  },
+  {
+    q:"Two solutions are mixed: Na₂SO₄(aq) + BaCl₂(aq). What precipitate forms?",
+    formula:"Na₂SO₄ + BaCl₂ →",
+    opts:["NaCl","BaSO₄","Na₂Cl₂","No precipitate"],
+    ans:1,
+    explain:"Double displacement gives BaSO₄ and NaCl. Ba²⁺ is a sulfate exception (Rule 4) — BaSO₄(s) precipitates. NaCl is soluble (Rule 2)."
+  },
+  {
+    q:"Is (NH₄)₂CO₃ soluble or insoluble?",
+    formula:"(NH₄)₂CO₃",
+    opts:["Soluble","Insoluble","Slightly soluble","Depends on temperature"],
+    ans:0,
+    explain:"Rule 2 overrides Rule 6: NH₄⁺ always forms soluble compounds, regardless of the anion. Even though CO₃²⁻ normally gives insoluble compounds, (NH₄)₂CO₃ is fully soluble."
+  },
+  {
+    q:"Which ion's presence GUARANTEES a soluble compound (no exceptions)?",
+    formula:"",
+    opts:["Ca²⁺","SO₄²⁻","NO₃⁻","OH⁻"],
+    ans:2,
+    explain:"Rule 1: All nitrates (NO₃⁻) are soluble with no exceptions. Ca²⁺, SO₄²⁻, and OH⁻ all have exceptions."
+  },
+  {
+    q:"What is the net ionic equation when AgNO₃(aq) and KCl(aq) are mixed?",
+    formula:"AgNO₃(aq) + KCl(aq) →",
+    opts:[
+      "Ag⁺(aq) + Cl⁻(aq) → AgCl(s)",
+      "AgNO₃(aq) + KCl(aq) → AgCl(s) + KNO₃(aq)",
+      "Ag⁺(aq) + NO₃⁻(aq) + K⁺(aq) + Cl⁻(aq) → AgCl(s) + K⁺(aq) + NO₃⁻(aq)",
+      "No reaction occurs"
+    ],
+    ans:0,
+    explain:"The net ionic equation removes spectator ions (K⁺ and NO₃⁻ stay in solution). Only Ag⁺ and Cl⁻ actually react: Ag⁺(aq) + Cl⁻(aq) → AgCl(s)"
+  },
+  {
+    q:"Iron(III) hydroxide — is it soluble?",
+    formula:"Fe(OH)₃",
+    opts:["Yes, soluble","No, insoluble","Slightly soluble","Only in acid"],
+    ans:1,
+    explain:"Rule 5: Most hydroxides are insoluble. Fe³⁺ is not Group 1 or Ba²⁺, so Fe(OH)₃ is an insoluble rust-brown precipitate."
+  },
+  {
+    q:"CuSO₄(aq) + 2KOH(aq) → ?\nWhat is the precipitate?",
+    formula:"CuSO₄ + 2KOH →",
+    opts:["K₂SO₄","Cu(OH)₂","KOH","No precipitate forms"],
+    ans:1,
+    explain:"Double displacement: Cu²⁺ + SO₄²⁻ + 2K⁺ + 2OH⁻. Cu(OH)₂ is insoluble (Rule 5 — Cu²⁺ is not an exception). K₂SO₄ remains soluble (K⁺ = Group 1, Rule 2)."
+  },
+  {
+    q:"Which of these is the CORRECT state symbol for an insoluble product?",
+    formula:"",
+    opts:["(aq)","(l)","(g)","(s)"],
+    ans:3,
+    explain:"(s) = solid = the compound does not dissolve. (aq) = dissolved in water. (l) = pure liquid. (g) = gas. Precipitates are always labeled (s) or with a downward arrow ↓."
+  },
+  {
+    q:"BaSO₄ is insoluble. What cation exception exists for hydroxides that also involves Ba²⁺?",
+    formula:"",
+    opts:["Ba(OH)₂ is insoluble","Ba(OH)₂ is soluble","Ba(OH)₂ is slightly soluble","Ba²⁺ has no hydroxide exceptions"],
+    ans:1,
+    explain:"Ba²⁺ is the ONE transition-area cation that forms a SOLUBLE hydroxide. Remember: Group 1 + Ba²⁺ are the soluble hydroxide exceptions. But BaSO₄ is still insoluble — two different rules!"
+  },
+  {
+    q:"Mixing Na₃PO₄(aq) and Ca(NO₃)₂(aq). Does a precipitate form?",
+    formula:"Na₃PO₄ + Ca(NO₃)₂ →",
+    opts:["No reaction — all products soluble","Yes — Ca₃(PO₄)₂ precipitates","Yes — NaNO₃ precipitates","Yes — Na₃PO₄ re-precipitates"],
+    ans:1,
+    explain:"Products: Ca₃(PO₄)₂ and NaNO₃. Rule 6: Phosphates are insoluble (Ca²⁺ is not Group 1 or NH₄⁺). Rule 1: NaNO₃ is soluble. So Ca₃(PO₄)₂(s) precipitates."
+  }
+];
+
+/* ===== STATE ===== */
+let currentSection = 0;
+let currentCard = 0;
+let cardFlipped = false;
+let quizAnswers = new Array(QUIZ_QS.length).fill(null);
+let currentQ = 0;
+let quizStarted = false;
+
+/* ===== NAVIGATION ===== */
+const sections = document.querySelectorAll('section');
+const totalSections = sections.length;
+
+function buildNavDots() {
+  const wrap = document.getElementById('navDots');
+  for(let i = 0; i < totalSections; i++) {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    d.title = ['Intro','Foundations','Rules','Predictor','Lab','Flashcards','Quiz'][i] || `Section ${i}`;
+    wrap.appendChild(d);
+  }
+}
+
+function goTo(idx) {
+  sections.forEach(s => s.classList.remove('active'));
+  document.getElementById('s' + idx).classList.add('active');
+  currentSection = idx;
+  updateNav();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateNav() {
+  const dots = document.querySelectorAll('.nav-dot');
+  dots.forEach((d, i) => {
+    d.className = 'nav-dot';
+    if(i < currentSection) d.classList.add('done');
+    if(i === currentSection) d.classList.add('active');
+  });
+  const pct = ((currentSection + 1) / totalSections) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+
+/* ===== RULES ACCORDION ===== */
+function buildRules() {
+  const wrap = document.getElementById('rulesAccordion');
+  RULES.forEach((r, idx) => {
+    const item = document.createElement('div');
+    item.className = 'rule-item';
+    item.innerHTML = `
+      <div class="rule-header" onclick="toggleRule(${idx})">
+        <span class="rule-num">${r.num}</span>
+        <span class="rule-title">${r.title}</span>
+        <span class="rule-arrow">▾</span>
+      </div>
+      <div class="rule-body">
+        <p style="margin-bottom:0.75rem">${r.body}</p>
+        ${r.examples.length ? `<div style="margin-bottom:0.75rem"><strong style="font-size:13px;color:var(--text)">Examples:</strong><ul class="exception-list">${r.examples.map(e=>`<li>${e}</li>`).join('')}</ul></div>` : ''}
+        ${r.exceptions.length ? `<div><strong style="font-size:13px;color:var(--danger)">Exceptions (insoluble):</strong><ul class="exception-list">${r.exceptions.map(e=>`<li style="border-color:rgba(248,81,73,0.3);background:rgba(248,81,73,0.05);color:var(--danger)">${e}</li>`).join('')}</ul></div>` : ''}
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+}
+
+function toggleRule(idx) {
+  const items = document.querySelectorAll('.rule-item');
+  items[idx].classList.toggle('open');
+}
+
+/* ===== PREDICTOR ===== */
+function predictSolubility() {
+  const cation = document.getElementById('cationSel').value;
+  const anion = document.getElementById('anionSel').value;
+  const result = document.getElementById('predResult');
+  if(!cation || !anion) {
+    result.style.display = 'block';
+    result.className = 'prediction-result';
+    result.style.border = '1px solid var(--border)';
+    result.style.background = 'var(--surface2)';
+    document.getElementById('predLabel').textContent = 'Please select both ions.';
+    document.getElementById('predLabel').style.color = 'var(--muted)';
+    document.getElementById('predRule').textContent = '';
+    return;
+  }
+  const key = cation + ':' + anion;
+  const data = SOLUBILITY_DB[key];
+  result.style.border = '';
+  result.style.background = '';
+  if(!data) {
+    result.style.display = 'block';
+    result.className = 'prediction-result';
+    result.style.border = '1px solid var(--border)';
+    result.style.background = 'var(--surface2)';
+    document.getElementById('predLabel').style.color = 'var(--muted)';
+    document.getElementById('predLabel').textContent = 'No data — generally INSOLUBLE (Rule 7)';
+    document.getElementById('predRule').textContent = 'Default rule: When in doubt, assume insoluble.';
+    return;
+  }
+  const [sol, rule] = data.split(':');
+  const labels = {S:'✓ SOLUBLE', I:'✗ INSOLUBLE', P:'~ SLIGHTLY SOLUBLE'};
+  const colors = {S:'var(--soluble)', I:'var(--insoluble)', P:'var(--partial)'};
+  const classes = {S:'soluble', I:'insoluble', P:'partial'};
+  result.style.display = 'block';
+  result.className = 'prediction-result ' + classes[sol];
+  document.getElementById('predLabel').textContent = labels[sol];
+  document.getElementById('predLabel').style.color = colors[sol];
+  document.getElementById('predRule').textContent = rule;
+}
+
+/* ===== MIXER SIM ===== */
+const SOL_COLORS = {
+  'NaCl':'#1a3a5c', 'AgNO3':'#1a3a5c', 'KOH':'#1a3a3a',
+  'BaCl2':'#1a3050', 'Na2SO4':'#1a3a5c', 'CuSO4':'#0d4b8f',
+  'Pb(NO3)2':'#1a3a5c', 'FeCl3':'#5c3a1a', 'NaOH':'#1a3a3a'
+};
+
+function mixSolutions() {
+  const s1 = document.getElementById('sol1').value;
+  const s2 = document.getElementById('sol2').value;
+  const key = s1 + '+' + s2;
+  const rxn = REACTIONS[key];
+
+  const l1 = document.getElementById('liquid1');
+  const l2 = document.getElementById('liquid2');
+  const b1l = document.getElementById('b1label');
+  const b2l = document.getElementById('b2label');
+  const simRes = document.getElementById('simResult');
+  const simEq = document.getElementById('simEquation');
+
+  b1l.textContent = s1.replace('2','₂').replace('3','₃').replace('(NO3)','(NO₃)');
+  b2l.textContent = s2.replace('2','₂').replace('3','₃').replace('(NO3)','(NO₃)');
+
+  l1.style.height = '80px';
+  l1.style.background = SOL_COLORS[s1] || '#1a3a5c';
+  l2.style.height = '80px';
+  l2.style.background = SOL_COLORS[s2] || '#1a3a5c';
+
+  setTimeout(() => {
+    if(rxn) {
+      l1.style.height = '0px';
+      l2.style.height = '0px';
+      setTimeout(() => {
+        const l1new = document.getElementById('liquid1');
+        l1new.style.height = '90px';
+        l1new.style.background = rxn.color;
+        document.getElementById('liquid2').style.height = '0px';
+
+        simRes.innerHTML = `<div class="dot" style="background:${rxn.color};border:1px solid var(--border)"></div><span><strong style="color:var(--text)">${rxn.ppt}(s) precipitate forms!</strong> ${rxn.description}</span>`;
+        document.getElementById('molEq').textContent = rxn.mol;
+        document.getElementById('netEq').textContent = rxn.net;
+        simEq.style.display = 'block';
+      }, 600);
+    } else {
+      simRes.innerHTML = `<div class="dot" style="background:var(--accent2)"></div><span><strong style="color:var(--accent2)">No precipitate.</strong> Both products are soluble — the solutions mix without forming a solid.</span>`;
+      simEq.style.display = 'none';
+    }
+  }, 200);
+}
+
+/* ===== FLASHCARDS ===== */
+function loadCard() {
+  const card = FLASHCARDS[currentCard];
+  document.getElementById('fcFront').innerHTML = card.q.replace(/\n/g,'<br>');
+  document.getElementById('fcBack').innerHTML = card.a.replace(/\n/g,'<br>');
+  document.getElementById('fcCount').textContent = (currentCard + 1) + ' / ' + FLASHCARDS.length;
+  const fc = document.getElementById('flashcard');
+  fc.classList.remove('flipped');
+  cardFlipped = false;
+}
+
+function flipCard() {
+  const fc = document.getElementById('flashcard');
+  cardFlipped = !cardFlipped;
+  if(cardFlipped) fc.classList.add('flipped');
+  else fc.classList.remove('flipped');
+}
+
+function nextCard() {
+  currentCard = (currentCard + 1) % FLASHCARDS.length;
+  loadCard();
+}
+
+function prevCard() {
+  currentCard = (currentCard - 1 + FLASHCARDS.length) % FLASHCARDS.length;
+  loadCard();
+}
+
+/* ===== QUIZ ===== */
+function startQuiz() {
+  quizAnswers = new Array(QUIZ_QS.length).fill(null);
+  currentQ = 0;
+  quizStarted = true;
+  goTo(6);
+  buildQuiz();
+}
+
+function buildQuiz() {
+  const prog = document.getElementById('quizProgress');
+  prog.innerHTML = '';
+  QUIZ_QS.forEach((_, i) => {
+    const b = document.createElement('div');
+    b.className = 'qp-bar' + (i === 0 ? ' active' : '');
+    b.id = 'qbar' + i;
+    prog.appendChild(b);
+  });
+
+  const qwrap = document.getElementById('quizQuestions');
+  qwrap.innerHTML = '';
+  QUIZ_QS.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q-wrap' + (i === 0 ? ' active' : '');
+    div.id = 'qq' + i;
+    div.innerHTML = `
+      <div class="quiz-q">
+        Q${i+1} of ${QUIZ_QS.length}: ${q.q}
+        ${q.formula ? `<span class="quiz-formula">${q.formula}</span>` : ''}
+      </div>
+      <div class="quiz-options">
+        ${q.opts.map((o, oi) => `<button class="quiz-opt" id="qo${i}_${oi}" onclick="answerQ(${i}, ${oi})">${o}</button>`).join('')}
+      </div>
+      <div class="quiz-explain" id="qe${i}">
+        <strong>Explanation:</strong> ${q.explain}
+      </div>
+      <div class="btn-row" id="qnext${i}" style="display:none">
+        ${i < QUIZ_QS.length - 1
+          ? `<button class="btn btn-primary" onclick="nextQ(${i+1})">Next Question →</button>`
+          : `<button class="btn btn-primary" onclick="showScore()">See Results →</button>`
+        }
+      </div>
+    `;
+    qwrap.appendChild(div);
+  });
+
+  document.getElementById('scoreDisplay').classList.remove('show');
+  document.getElementById('quizBackBtn').style.display = 'flex';
+  document.getElementById('quizIntro').style.display = 'block';
+}
+
+function answerQ(qIdx, optIdx) {
+  if(quizAnswers[qIdx] !== null) return;
+  quizAnswers[qIdx] = optIdx;
+  const correct = QUIZ_QS[qIdx].ans;
+  const isRight = optIdx === correct;
+
+  // Style options
+  QUIZ_QS[qIdx].opts.forEach((_, oi) => {
+    const btn = document.getElementById(`qo${qIdx}_${oi}`);
+    btn.disabled = true;
+    if(oi === correct) btn.classList.add('correct');
+    else if(oi === optIdx && !isRight) btn.classList.add('wrong');
+  });
+
+  // Show explanation
+  document.getElementById(`qe${qIdx}`).classList.add('show');
+  document.getElementById(`qnext${qIdx}`).style.display = 'flex';
+
+  // Update progress bar
+  const bar = document.getElementById('qbar' + qIdx);
+  bar.classList.remove('active');
+  bar.classList.add(isRight ? 'correct' : 'wrong');
+  if(qIdx + 1 < QUIZ_QS.length) {
+    document.getElementById('qbar' + (qIdx+1))?.classList.add('active');
+  }
+
+  if(isRight) confetti();
+}
+
+function nextQ(idx) {
+  document.querySelectorAll('.quiz-q-wrap').forEach(el => el.classList.remove('active'));
+  document.getElementById('qq' + idx).classList.add('active');
+  currentQ = idx;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showScore() {
+  const score = quizAnswers.filter((a, i) => a === QUIZ_QS[i].ans).length;
+  document.querySelectorAll('.quiz-q-wrap').forEach(el => el.classList.remove('active'));
+  const disp = document.getElementById('scoreDisplay');
+  disp.classList.add('show');
+  document.getElementById('quizBackBtn').style.display = 'none';
+  document.getElementById('quizIntro').style.display = 'none';
+
+  const circle = document.getElementById('scoreCircle');
+  const pct = score / QUIZ_QS.length;
+  let color = pct >= 0.8 ? 'var(--accent2)' : pct >= 0.5 ? 'var(--warn)' : 'var(--danger)';
+  circle.style.borderColor = color;
+  document.getElementById('scoreNum').style.color = color;
+  document.getElementById('scoreNum').textContent = score;
+
+  const msgs = [
+    [0.9, "Outstanding! 🎉", "You've mastered solubility rules. Ready for university chemistry!"],
+    [0.7, "Great work!", "Solid understanding. Review any questions you missed and you're set."],
+    [0.5, "Good effort.", "You've got the basics. Re-read the rules and try again for a better score."],
+    [0.0, "Keep practising.", "Go back through the lesson and flashcards, then retake the quiz!"]
+  ];
+  const [, msg, detail] = msgs.find(([t]) => pct >= t);
+  document.getElementById('scoreMsg').textContent = msg;
+  document.getElementById('scoreDetail').textContent = detail;
+
+  if(pct >= 0.8) { confetti(); setTimeout(confetti, 500); setTimeout(confetti, 1000); }
+}
+
+function restartQuiz() { startQuiz(); }
+
+/* ===== CONFETTI ===== */
+function confetti() {
+  const colors = ['#58a6ff','#3fb950','#bc8cff','#d29922','#f85149'];
+  for(let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.cssText = `
+      left:${Math.random()*100}vw;
+      top:${Math.random()*30}vh;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${1.5+Math.random()}s;
+      animation-delay:${Math.random()*0.4}s;
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 2500);
+  }
+}
+
+/* ===== INIT ===== */
+buildNavDots();
+buildRules();
+loadCard();
+updateNav();
+</script>
+</body>
+</html>
